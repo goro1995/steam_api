@@ -1,0 +1,23 @@
+<?php
+	$array=explode('/',$_SERVER['PHP_SELF']);
+	$count=count($array);
+	$use=$count-1;
+	if($array[$use]=='config.php'){
+		include('error.php');
+	}else{
+		$config=array();
+		$config['db-host']='localhost';
+		$config['db-user']='root';
+		$config['db-pass']='';
+		$config['db-base']='';
+		$config['db-char']='UTF-8';
+		$config['api-key']='';
+		$config['api-hkey']='';
+		$config['connect']=true;
+		if($config['connect']==true){
+			mysql_connect($config['db-host'],$config['db-user'],$config['db-pass']);
+			mysql_select_db($config['db-base']);
+			mysql_set_charset($config['db-char']);
+		}
+	}
+?>
